@@ -39,6 +39,28 @@ def transform_reply_to(row: pd.Series, data: pd.DataFrame) -> str:
     return reply_text
 
 
+# def combine_message_and_reply(row: pd.Series) -> str:
+#     """
+#     Combines the message and reply into a single string, given a row from a DataFrame.
+
+#     Args:
+#         row (pandas.Series): A row from a DataFrame representing a message.
+
+#     Returns:
+#         str: The combined message and reply, or an empty string if the reply is empty or the message type is not supported.
+#     """
+#     if row["reply_clean_text"] == "":
+#         if row['message_type'] == "question":
+#             return ""
+#         elif is_it_talk_about_hajez(row["message_clean_text"]) and is_it_give_information(row["message_clean_text"]):
+#             return row["message_clean_text"]
+#         else:
+#             return ""
+#     if is_it_talk_about_hajez(row["reply_clean_text"]) and is_it_give_information(row["message_clean_text"]) and row['message_type'] == "statement":
+#         return row["reply_clean_text"] + "|||" + row["message_clean_text"]
+#     else:
+#         return ""
+
 def combine_message_and_reply(row: pd.Series) -> str:
     """
     Combines the message and reply into a single string, given a row from a DataFrame.
