@@ -101,3 +101,82 @@ def is_it_match_status(keys:tuple, text:str)->int:
     text = text.split("|||")[-1]
     # Check if any of the given words in a tuple is mentioned in the extracted text with high enough similarity using fuzzywuzzy
     return 1 if any(fuzz.partial_ratio(word, text) >= 70 for word in keys) else 0
+
+
+def is_punct(word):
+    """
+    Returns True if the word is punctuation, False otherwise.
+    """
+    # check if the word is punctuation
+    punct_chars = set('؟،؛?!.,:;')
+    return all(char in punct_chars for char in word)
+
+
+
+def combine_sub_words(output):
+    for index in range(len(output)):
+        if index < len(output) - 1:
+            if '##' in output[index+1]['word']:
+                output[index]['word'] = output[index]['word'] + output[index+1]['word']
+                output[index]['word'] = output[index]['word'].replace('##', '')
+                # delete the next word
+                output.pop(index+1)
+    return output
+
+
+def word2features(sent,pos, i):
+    word = sent[i]
+    features = {
+        'bias': 1.0,
+        'word': word,
+        'word.ispunct()': is_punct(word),
+        'word.isnumeric()': word.isnumeric(),
+        'word.isdigit()': word.isdigit(),
+        'word.isalpha()': word.isalpha(),
+        'word_len': len(word),
+        'word_prefix1': word[:1],
+        'word_prefix2': word[:2],
+        'word_prefix3': word[:3],
+        'word_prefix4': word[:4],
+        'word_suffix1': word[-1:],
+        'word_suffix2': word[-2:],
+        'word_suffix3': word[-3:],
+        'word_suffix4': word[-4:],
+        'word_pos': pos[i],
+    }
+    if i > 0:
+        prev_word = sent[i-1]
+        features.update({
+            'prev_word': prev_word,
+            'prev_word.ispunct()': is_punct(prev_word),
+            'prev_word.isnumeric()': prev_word.isnumeric(),
+            'prev_word.isdigit()': prev_word.isdigit(),
+            'prev_word.isalpha()': prev_word.isalpha(),
+            'prev_word_suffix1': prev_word[-1:],
+            'prev_word_suffix2': prev_word[-2:],
+            'prev_word_suffix3': prev_word[-3:],
+            'prev_word_suffix4': prev_word[-4:],
+            # 'prev_word_barr': is_it_bar(prev_word),
+            # 'prev_word_stat': is_it_status(prev_word),
+            'prev_word_pos': pos[i-1],
+        })
+    if i < len(sent)-1:
+        next_word = sent[i+1]
+        features.update({
+            'next_word': next_word,
+            'next_word.ispunct()': is_punct(next_word),
+            'next_word.isnumeric()': next_word.isnumeric(),
+            'next_word.isdigit()': next_word.isdigit(),
+            'next_word.isalpha()': next_word.isalpha(),
+            'next_word_prefix1': next_word[:1],
+            'next_word_prefix2': next_word[:2],
+            'next_word_prefix3': next_word[:3],
+            'next_word_prefix4': next_word[:4],
+            # 'next_word_barr': is_it_bar(next_word),
+            # 'next_word_stat': is_it_status(next_word),
+            'next_word_pos': pos[i+1]
+
+        })
+    return features
+
+  

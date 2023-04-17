@@ -58,6 +58,10 @@ def clean_text(text: str) -> str:
     clean_text = remove_non_arabic_characters(clean_text)
     # remove end-of-line and tab characters from text
     clean_text = remove_end_of_line_and_tab_characters(clean_text)
+    # remove stop words from text
+    clean_text = remove_arabic_stop_words(clean_text)
+    # remove any numbers from text
+    clean_text = remove_any_numbers(clean_text)
     return clean_text
 
 
