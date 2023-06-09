@@ -1,0 +1,36 @@
+<div class="map-container">
+    <!-- Container for the map -->
+    <div class="map" id="my-map"></div>
+    
+    <!-- Container for hawajez status -->
+    <div style="display:none" id="hawajez-status" class="other-content">
+        <!-- Counter for the upcoming update -->
+        <div class="counter">التحديث القادم: {{ counter }}</div>
+
+        <!-- Loop through hawajez status and display the information -->
+        <div
+            (click)="gotToHajezLocation(hajez.key)"
+            *ngFor="let hajez of hawajezStatus | keyvalue"
+            class="status-box hawajez-status-item box"
+        >
+            <p>{{ hajez.key }}</p>
+            <p style="color:{{ getColorClass(hajez.value) }}">{{ hajez.value }}</p>
+            <p>{{ hawajezTime[hajez.key] }}</p>
+        </div>
+
+        <!-- Loop through hawajez points and display the information -->
+        <ng-container *ngFor="let hajez of hawajezPoints | keyvalue">
+            <div
+                (click)="gotToHajezLocation(hajez.key)"
+                class="status-box gray hawajez-status-item box"
+                *ngIf="!hawajezStatus[hajez.key]"
+            >
+                <p>{{ hajez.key }}</p>
+                <p>لا يوجد حالة</p>
+                <p>{{ current_time }}</p>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<div class="container"></div>
