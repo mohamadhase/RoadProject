@@ -1,0 +1,163 @@
+#my-map {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+
+.map-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* If the screen is small, make it column */
+}
+
+.map {
+  flex: 7;
+}
+
+.other-content {
+  /* Add any specific styles for other content */
+}
+
+#my-map > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-popup-pane > div > div.leaflet-popup-content-wrapper > div {
+  color: red;
+}
+
+#hawajez-status {
+  background-color: #333;
+  color: white !important;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: 1;
+  max-height: 100vh;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  overflow-x: hidden; /* Disable horizontal scrolling */
+}
+
+.counter {
+  color: white !important;
+}
+
+#hawajez-status::-webkit-scrollbar-track {
+  background-color: transparent; /* Set the background color of the scrollbar track */
+}
+
+#hawajez-status::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Set the background color of the scrollbar thumb */
+}
+
+#hawajez-status::-webkit-scrollbar {
+  width: 0.5em; /* Adjust the width of the scrollbar */
+}
+
+.hawajez-status-item {
+  flex: 0 0 calc(50% - 20px);
+  margin: 10px;
+  min-width: 200px;
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+.status-box {
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+  width: 200px;
+  flex-basis: calc(25% - 20px);
+  flex-grow: 1;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.counter {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.popup-container {
+  text-align: center;
+  width: 200px;
+}
+
+.popup-title {
+  margin-top: 0;
+}
+
+.popup-status {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.green1 {
+  color: green;
+}
+
+.red1 {
+  color: red;
+}
+
+.yellow1 {
+  color: yellow;
+}
+
+.popup-time {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.status-button {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
+}
+
+body {
+  /* Keep the inherited background full size. */
+  background-attachment: fixed;
+}
+
+.box {
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  background: inherit;
+  overflow: hidden;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: medium;
+  color: white !important;
+}
+
+.box:before {
+  content: "";
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 2000px rgba(239, 243, 242, 0.5);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+}
