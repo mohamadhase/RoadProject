@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+#my-map > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-popup-pane > div > div.leaflet-popup-content-wrapper > div > div>  p {
+    color: red;
+  }
+  
+  
+  #my-map > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-popup-pane > div > div.leaflet-popup-content-wrapper {
+    border: 1px solid #dddddd;
+    /* border-radius: 4px; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* padding: 10px; */
+    /* text-align: center; */
+    width: 200px;
+    font-size: medium;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+
+  }
+
+
+  * {
+    font-family: 'Courier New', Courier, monospace !important;
+
+  }
+
+  .status-button {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+.green{
+  color: green !important;
+}
+.red{
+  color: red !important;
+}
+.gray{
+  color: gray !important;
+}
+.yellow{
+  color: rgb(156, 156, 50) !important;
+}
